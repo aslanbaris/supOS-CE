@@ -1,0 +1,2552 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>supOS-CE Platform Mimari Dokümantasyonu</title>
+    <style>
+        :root {
+            --primary-color: #1890ff;
+            --secondary-color: #52c41a;
+            --accent-color: #fa8c16;
+            --danger-color: #f5222d;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-color: #262626;
+            --border-color: #d9d9d9;
+            --code-bg: #f5f5f5;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+                'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav-menu {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: calc(var(--header-height) + 20px);
+            z-index: 100;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .nav-menu a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .section h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .section h4 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .architecture-diagram {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        .diagram-box {
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .diagram-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .diagram-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .flow-box {
+            flex: 1;
+            min-width: 200px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .tech-stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .tech-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .tech-card li:last-child {
+            border-bottom: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table thead {
+            background: linear-gradient(135deg, var(--primary-color), #40a9ff);
+            color: white;
+        }
+
+        table th, table td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        table tbody tr:hover {
+            background: #e6f7ff;
+            transition: background 0.3s;
+        }
+
+        .highlight-box {
+            background: #fff7e6;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fff2f0;
+            border-left: 4px solid var(--danger-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box {
+            background: #e6f7ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge-primary { background: var(--primary-color); color: white; }
+        .badge-success { background: var(--secondary-color); color: white; }
+        .badge-warning { background: var(--accent-color); color: white; }
+        .badge-danger { background: var(--danger-color); color: white; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-container {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .repo-comparison {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .repo-card {
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .repo-card.main { border-color: var(--primary-color); }
+        .repo-card.backend { border-color: var(--secondary-color); }
+        .repo-card.frontend { border-color: var(--accent-color); }
+
+        .repo-card h3 {
+            margin: 1rem 0;
+            border: none;
+            padding: 0;
+        }
+
+        .repo-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .container-diagram {
+            background: #f8f9fa;
+            border: 2px dashed var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .service-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .port-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏭 supOS-CE Platform</h1>
+        <p>Industrial Internet of Things (IIoT) - Mimari Dokümantasyonu</p>
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">
+            Unified Namespace (UNS) Metodolojisi ile Semantik Veri Entegrasyonu
+        </p>
+    </div>
+
+    <div class="container">
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#overview">📋 Genel Bakış</a></li>
+                <li><a href="#architecture">🏗️ Mimari</a></li>
+                <li><a href="#repos">📦 Repository Detayları</a></li>
+                <li><a href="#dataflow">🔄 Veri Akışı</a></li>
+                <li><a href="#tech">💻 Teknolojiler</a></li>
+                <li><a href="#deployment">🚀 Deployment</a></li>
+                <li><a href="#build">🔧 Build Planı</a></li>
+            </ul>
+        </nav>
+
+        <!-- GENEL BAKIŞ -->
+        <section id="overview" class="section">
+            <h2>📋 Genel Bakış</h2>
+
+            <div class="info-box">
+                <h4>🎯 supOS-CE Nedir?</h4>
+                <p><strong>supOS Community Edition</strong>, endüstriyel IoT (IIoT) senaryoları için geliştirilmiş, <strong>Unified Namespace (UNS)</strong> metodolojisine dayanan açık kaynaklı bir <strong>semantik veri entegrasyon platformu</strong>dur.</p>
+            </div>
+
+            <div class="repo-comparison">
+                <div class="repo-card main">
+                    <div class="repo-icon">🎯</div>
+                    <h3>supOS-CE</h3>
+                    <span class="badge badge-primary">Ana Repository</span>
+                    <p style="margin-top: 1rem;">Orkestrasyon, konfigürasyon ve deployment yönetimi</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Docker Compose yapılandırmaları</li>
+                        <li>Servis entegrasyonları</li>
+                        <li>Kurulum scriptleri</li>
+                        <li>Mount point yönetimi</li>
+                    </ul>
+                </div>
+
+                <div class="repo-card backend">
+                    <div class="repo-icon">☕</div>
+                    <h3>supOS-Backend</h3>
+                    <span class="badge badge-success">Java Backend</span>
+                    <p style="margin-top: 1rem;">Core business logic ve API servisleri</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>Spring Boot 3.1.0</li>
+                        <li>16 modül (microservices)</li>
+                        <li>UNS data management</li>
+                        <li>Multi-adapter architecture</li>
+                    </ul>
+                </div>
+
+                <div class="repo-card frontend">
+                    <div class="repo-icon">⚛️</div>
+                    <h3>supOS-Frontend</h3>
+                    <span class="badge badge-warning">React SPA</span>
+                    <p style="margin-top: 1rem;">Modern web kullanıcı arayüzü</p>
+                    <ul style="text-align: left; margin-top: 1rem;">
+                        <li>React 18 + TypeScript</li>
+                        <li>Vite build sistemi</li>
+                        <li>Ant Design UI</li>
+                        <li>Module Federation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🔑 Anahtar Özellikler</h3>
+            <div class="tech-stack-grid">
+                <div class="tech-card">
+                    <h4>🌐 Unified Namespace (UNS)</h4>
+                    <p>MQTT tabanlı hiyerarşik semantik veri modeli. Cihaz ve sistemlerden gelen verileri standartlaştırılmış JSON formatında yönetir.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔌 Source Flow</h4>
+                    <p>Node-RED tabanlı veri toplama pipeline'ı. Gerçek zamanlı protokol dönüşümü ve cihaz bağlantıları.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>⚡ Event Flow</h4>
+                    <p>Namespace verilerini yüksek seviye iş akışlarına dönüştüren orkestrasyon motoru.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>💾 Time-Series Storage</h4>
+                    <p>TimescaleDB ile optimize edilmiş zaman serisi veri depolama ve sorgulama.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔐 Enterprise Auth</h4>
+                    <p>Keycloak OAuth2/OIDC entegrasyonu ile kurumsal kimlik doğrulama ve yetkilendirme.</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔌 Plugin Architecture</h4>
+                    <p>Module Federation ile genişletilebilir plugin sistemi ve özel adaptörler.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>📊 Platform İstatistikleri</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Repository</th>
+                            <th>Teknoloji</th>
+                            <th>Dosya Sayısı</th>
+                            <th>Kod Satırı</th>
+                            <th>Modül Sayısı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>supOS-CE</strong></td>
+                            <td>Shell Scripts, YAML, Docker</td>
+                            <td>~150+</td>
+                            <td>~5,000</td>
+                            <td>15+ Servis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>supOS-Backend</strong></td>
+                            <td>Java 17, Spring Boot</td>
+                            <td>780</td>
+                            <td>~66,675</td>
+                            <td>16 Maven Modül</td>
+                        </tr>
+                        <tr>
+                            <td><strong>supOS-Frontend</strong></td>
+                            <td>React 18, TypeScript</td>
+                            <td>~300+</td>
+                            <td>~25,000+</td>
+                            <td>58+ Component</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- MİMARİ YAPISI -->
+        <section id="architecture" class="section">
+            <h2>🏗️ Sistem Mimarisi</h2>
+
+            <h3>📐 Genel Mimari Diyagram</h3>
+            <div class="architecture-diagram">
+                <div style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; color: var(--primary-color);">
+                    <strong>supOS-CE Platform Katmanları</strong>
+                </div>
+
+                <div class="flow-container">
+                    <div class="flow-box" style="background: #e6f7ff; border-color: #1890ff;">
+                        <strong>🌐 Presentation Layer</strong>
+                        <hr style="margin: 0.75rem 0; border: none; border-top: 1px solid #ccc;">
+                        <div style="font-size: 0.9rem;">
+                            <strong>supOS-Frontend</strong><br>
+                            React 18 + TypeScript<br>
+                            Ant Design UI<br>
+                            Port: 3000, 3001, 3002, 3010
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <div class="flow-box" style="background: #f6ffed; border-color: #52c41a;">
+                        <strong>🚪 API Gateway Layer</strong>
+                        <hr style="margin: 0.75rem 0; border: none; border-top: 1px solid #ccc;">
+                        <div style="font-size: 0.9rem;">
+                            <strong>Kong API Gateway</strong><br>
+                            Custom Auth Plugin<br>
+                            URL Transformer<br>
+                            Port: 8088
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <div class="flow-box" style="background: #fff7e6; border-color: #fa8c16;">
+                        <strong>⚙️ Application Layer</strong>
+                        <hr style="margin: 0.75rem 0; border: none; border-top: 1px solid #ccc;">
+                        <div style="font-size: 0.9rem;">
+                            <strong>supOS-Backend</strong><br>
+                            Spring Boot 3.1.0<br>
+                            16 Microservice Modülleri<br>
+                            Port: 8080, 8091
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <div class="flow-box" style="background: #f9f0ff; border-color: #722ed1;">
+                        <strong>🔄 Integration Layer</strong>
+                        <hr style="margin: 0.75rem 0; border: none; border-top: 1px solid #ccc;">
+                        <div style="font-size: 0.9rem;">
+                            <strong>MQTT/EMQX + Node-RED</strong><br>
+                            Unified Namespace (UNS)<br>
+                            Source Flow + Event Flow<br>
+                            Ports: 1883, 1880, 1889
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow">↓</div>
+
+                    <div class="flow-box" style="background: #fff1f0; border-color: #f5222d;">
+                        <strong>💾 Data Layer</strong>
+                        <hr style="margin: 0.75rem 0; border: none; border-top: 1px solid #ccc;">
+                        <div style="font-size: 0.9rem;">
+                            <strong>PostgreSQL + TimescaleDB</strong><br>
+                            Elasticsearch<br>
+                            MinIO Object Storage<br>
+                            Ports: 5432, 2345, 9000
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🔗 Repository İlişkileri</h3>
+            <div class="info-box">
+                <h4>Repository Entegrasyonu</h4>
+                <p><strong>supOS-CE</strong> ana repository, diğer iki repository'yi <strong>Git submodule</strong> veya <strong>Docker image</strong> olarak entegre eder:</p>
+
+<pre><code>supOS-CE/
+├── .gitmodules               # Git submodule tanımları
+│   ├── frontend → supOS-frontend
+│   └── backend → supOS-backend
+│
+├── docker-compose.yml        # Servis orkestrasyonu
+│   ├── frontend: suposce/supos-ce-platform:1.0.11-T2
+│   └── backend: suposce/supos-ce-backend:1.0.11-T3
+│
+└── builds.yaml              # Build konfigürasyonu
+    ├── Submodule URL'leri
+    └── Docker image tag'leri</code></pre>
+            </div>
+
+            <div class="grid-2">
+                <div>
+                    <h4>🔄 Development Workflow</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>1. Development</h4>
+                            <p>Backend ve Frontend ayrı repository'lerde geliştirilir</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>2. Build</h4>
+                            <p>Her repo kendi Dockerfile ile Docker image'a dönüştürülür</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>3. Push</h4>
+                            <p>Image'lar Docker Hub'a push edilir</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>4. Integration</h4>
+                            <p>supOS-CE bu image'ları docker-compose ile orchestrate eder</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>5. Deployment</h4>
+                            <p>Tüm stack birlikte deploy edilir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>🔐 Dependency Graph</h4>
+<pre style="background: white; color: #2d2d2d; border: 2px solid var(--border-color);">
+┌─────────────────────────┐
+│      supOS-CE           │
+│   (Orchestrator)        │
+└───────┬─────────────────┘
+        │
+        ├──► Docker Compose
+        │    ├── PostgreSQL
+        │    ├── EMQX (MQTT)
+        │    ├── Keycloak (Auth)
+        │    ├── Kong (Gateway)
+        │    ├── Node-RED (Flows)
+        │    ├── Grafana
+        │    └── MinIO
+        │
+        ├──► Backend Image
+        │    └── Spring Boot App
+        │         ├── UNS Module
+        │         ├── Gateway Module
+        │         ├── i18n Service
+        │         └── Adapters
+        │
+        └──► Frontend Image
+             └── React SPA
+                  ├── Pages
+                  ├── Components
+                  ├── API Layer
+                  └── State Management
+</pre>
+                </div>
+            </div>
+
+            <h3>🎯 Katman Sorumlulukları</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Katman</th>
+                        <th>Sorumluluk</th>
+                        <th>Teknolojiler</th>
+                        <th>Repository</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Presentation</strong></td>
+                        <td>Kullanıcı arayüzü, interaksiyon, görselleştirme</td>
+                        <td>React, TypeScript, Ant Design</td>
+                        <td>supOS-Frontend</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API Gateway</strong></td>
+                        <td>Routing, authentication, rate limiting</td>
+                        <td>Kong, Custom Plugins</td>
+                        <td>supOS-CE (config)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application</strong></td>
+                        <td>Business logic, data processing, API endpoints</td>
+                        <td>Spring Boot, Java 17</td>
+                        <td>supOS-Backend</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Integration</strong></td>
+                        <td>Protocol translation, message routing, flow automation</td>
+                        <td>EMQX, Node-RED, MQTT</td>
+                        <td>supOS-CE (config)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data</strong></td>
+                        <td>Persistence, time-series storage, search indexing</td>
+                        <td>PostgreSQL, TimescaleDB, Elasticsearch</td>
+                        <td>supOS-CE (compose)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>Authentication, authorization, user management</td>
+                        <td>Keycloak, Sa-Token</td>
+                        <td>supOS-CE + Backend</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- REPOSITORY DETAYLARI -->
+        <section id="repos" class="section">
+            <h2>📦 Repository Detaylı Analizi</h2>
+
+            <!-- supOS-CE -->
+            <h3>🎯 1. supOS-CE (Ana Repository)</h3>
+            <div class="highlight-box">
+                <p><strong>Rol:</strong> Platform Orchestrator ve Configuration Management</p>
+                <p><strong>Git:</strong> <code>https://github.com/aslanbaris/supOS-CE</code></p>
+            </div>
+
+            <h4>📂 Dizin Yapısı</h4>
+            <div class="grid-2">
+                <div>
+<pre><code>supOS-CE/
+├── bin/                    # Yönetim scriptleri
+│   ├── install.sh         # Ana kurulum
+│   ├── start.sh           # Servisleri başlat
+│   ├── stop.sh            # Servisleri durdur
+│   ├── init/              # Init scriptleri
+│   └── util/              # Yardımcı araçlar
+│
+├── mount/                  # Mount points
+│   ├── backend/           # Backend config
+│   ├── frontend/          # Frontend plugins
+│   ├── postgresql/        # DB config
+│   ├── emqx/              # MQTT config
+│   ├── kong/              # Gateway config
+│   └── [diğer servisler]
+│
+├── debs/                   # Debian paketleri
+│   └── docker/            # Docker engine
+│
+├── docker-compose-*.yml    # Compose files
+├── builds.yaml            # Build config
+└── .env                   # Environment vars</code></pre>
+                </div>
+
+                <div>
+                    <h4>⚙️ Anahtar Dosyalar</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dosya</th>
+                                <th>Açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>.env</code></td>
+                                <td>Tüm servis konfigürasyonları</td>
+                            </tr>
+                            <tr>
+                                <td><code>docker-compose-4c8g.yml</code></td>
+                                <td>4 core, 8GB RAM profili</td>
+                            </tr>
+                            <tr>
+                                <td><code>docker-compose-8c16g.yml</code></td>
+                                <td>8 core, 16GB RAM profili</td>
+                            </tr>
+                            <tr>
+                                <td><code>builds.yaml</code></td>
+                                <td>Image build tanımları</td>
+                            </tr>
+                            <tr>
+                                <td><code>bin/install.sh</code></td>
+                                <td>Otomatik kurulum scripti</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h4>🐳 Docker Compose Servisleri</h4>
+            <div class="service-grid">
+                <div class="service-item">
+                    <strong>frontend</strong><br>
+                    <span class="port-badge">3000-3010</span><br>
+                    React UI
+                </div>
+                <div class="service-item">
+                    <strong>backend</strong><br>
+                    <span class="port-badge">8091</span><br>
+                    Spring Boot API
+                </div>
+                <div class="service-item">
+                    <strong>postgresql</strong><br>
+                    <span class="port-badge">5432</span><br>
+                    Main Database
+                </div>
+                <div class="service-item">
+                    <strong>tsdb</strong><br>
+                    <span class="port-badge">2345</span><br>
+                    TimescaleDB
+                </div>
+                <div class="service-item">
+                    <strong>emqx</strong><br>
+                    <span class="port-badge">1883</span><br>
+                    MQTT Broker
+                </div>
+                <div class="service-item">
+                    <strong>kong</strong><br>
+                    <span class="port-badge">8088</span><br>
+                    API Gateway
+                </div>
+                <div class="service-item">
+                    <strong>keycloak</strong><br>
+                    <span class="port-badge">8081</span><br>
+                    OAuth/OIDC
+                </div>
+                <div class="service-item">
+                    <strong>nodered</strong><br>
+                    <span class="port-badge">1880</span><br>
+                    Source Flow
+                </div>
+                <div class="service-item">
+                    <strong>eventflow</strong><br>
+                    <span class="port-badge">1889</span><br>
+                    Event Flow
+                </div>
+                <div class="service-item">
+                    <strong>grafana</strong><br>
+                    <span class="port-badge">3000</span><br>
+                    Monitoring
+                </div>
+                <div class="service-item">
+                    <strong>minio</strong><br>
+                    <span class="port-badge">9000</span><br>
+                    Object Storage
+                </div>
+                <div class="service-item">
+                    <strong>portainer</strong><br>
+                    <span class="port-badge">9443</span><br>
+                    Container UI
+                </div>
+            </div>
+
+            <!-- supOS-Backend -->
+            <h3 style="margin-top: 3rem;">☕ 2. supOS-Backend</h3>
+            <div class="highlight-box">
+                <p><strong>Rol:</strong> Core Business Logic ve API Services</p>
+                <p><strong>Git:</strong> <code>https://github.com/aslanbaris/supOS-backend</code></p>
+                <p><strong>Teknoloji:</strong> Java 17 + Spring Boot 3.1.0 + Maven</p>
+            </div>
+
+            <h4>🏗️ Modül Mimarisi (16 Maven Modül)</h4>
+            <div class="tech-stack-grid">
+                <div class="tech-card">
+                    <h4>🚀 bootstrap</h4>
+                    <p><strong>Tip:</strong> Executable JAR</p>
+                    <p>Ana uygulama giriş noktası. Tüm modülleri aggregate eder.</p>
+                    <p><code>Port: 8080, 19099</code></p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔧 common</h4>
+                    <p><strong>Tip:</strong> Shared Library</p>
+                    <p>Utilities, configurations, event bus, database drivers</p>
+                    <p><code>~21,441 LOC</code></p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🚪 gateway</h4>
+                    <p><strong>Tip:</strong> Auth Service</p>
+                    <p>Keycloak entegrasyonu, token validation, user info</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🌐 UnityNamespace</h4>
+                    <p><strong>Tip:</strong> Core Module</p>
+                    <p>UNS data model, 20+ controllers, 30+ services</p>
+                    <p><code>Primary Module</code></p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🌍 i18n-service</h4>
+                    <p><strong>Tip:</strong> i18n Service</p>
+                    <p>Multi-language support, translation management</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔌 adapter-mqtt</h4>
+                    <p><strong>Tip:</strong> MQTT Adapter</p>
+                    <p>MQTT client, message bus integration</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔍 adpter-elasticsearch</h4>
+                    <p><strong>Tip:</strong> Search Adapter</p>
+                    <p>Elasticsearch 7.10.2 integration</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>⏱️ adpter-tdengine</h4>
+                    <p><strong>Tip:</strong> TSDB Adapter</p>
+                    <p>TDengine time-series database</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🗄️ adpter-postgresql</h4>
+                    <p><strong>Tip:</strong> DB Adapter</p>
+                    <p>PostgreSQL integration with Druid pool</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>📊 adpter-grafana</h4>
+                    <p><strong>Tip:</strong> Visualization</p>
+                    <p>Grafana dashboard integration</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🚪 adpter-kong</h4>
+                    <p><strong>Tip:</strong> Gateway Adapter</p>
+                    <p>Kong API gateway management</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔄 adpter-nodered</h4>
+                    <p><strong>Tip:</strong> Flow Adapter</p>
+                    <p>Node-RED automation integration</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>⚡ adpter-eventflow</h4>
+                    <p><strong>Tip:</strong> Event Adapter</p>
+                    <p>OPC UA, Modbus, MQTT protocols</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>📦 adpter-minio</h4>
+                    <p><strong>Tip:</strong> Storage Adapter</p>
+                    <p>MinIO S3-compatible storage</p>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔌 supos-websocket</h4>
+                    <p><strong>Tip:</strong> WebSocket Service</p>
+                    <p>Real-time bidirectional communication</p>
+                </div>
+            </div>
+
+            <h4>🎯 Ana API Controllers</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Controller</th>
+                        <th>Endpoint Prefix</th>
+                        <th>Sorumluluk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>UnsApiController</strong></td>
+                        <td><code>/inter-api/supos/uns</code></td>
+                        <td>UNS namespace CRUD, search, tree operations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UnsDataController</strong></td>
+                        <td><code>/inter-api/supos/uns/data</code></td>
+                        <td>Time-series data query ve management</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UnsTemplateApiController</strong></td>
+                        <td><code>/inter-api/supos/template</code></td>
+                        <td>Template CRUD operations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UnsAlarmApiController</strong></td>
+                        <td><code>/inter-api/supos/alarm</code></td>
+                        <td>Alarm/alert rules management</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DashboardController</strong></td>
+                        <td><code>/inter-api/supos/dashboard</code></td>
+                        <td>Dashboard configuration</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UserManageController</strong></td>
+                        <td><code>/inter-api/supos/user</code></td>
+                        <td>User ve role management</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PluginController</strong></td>
+                        <td><code>/inter-api/supos/plugin</code></td>
+                        <td>Plugin installation ve management</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>🔧 Backend Teknoloji Stack'i</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Teknoloji</th>
+                        <th>Versiyon</th>
+                        <th>Amaç</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Core Framework</td>
+                        <td>Spring Boot</td>
+                        <td>3.1.0</td>
+                        <td>Application framework</td>
+                    </tr>
+                    <tr>
+                        <td>Language</td>
+                        <td>Java</td>
+                        <td>17</td>
+                        <td>Programming language</td>
+                    </tr>
+                    <tr>
+                        <td>Build Tool</td>
+                        <td>Maven</td>
+                        <td>3.8+</td>
+                        <td>Dependency management</td>
+                    </tr>
+                    <tr>
+                        <td>ORM</td>
+                        <td>MyBatis-Plus</td>
+                        <td>3.5.10.1</td>
+                        <td>Database mapping</td>
+                    </tr>
+                    <tr>
+                        <td>Auth</td>
+                        <td>Sa-Token</td>
+                        <td>1.34.0</td>
+                        <td>JWT authentication</td>
+                    </tr>
+                    <tr>
+                        <td>JSON</td>
+                        <td>FastJSON2</td>
+                        <td>2.0.37</td>
+                        <td>JSON processing</td>
+                    </tr>
+                    <tr>
+                        <td>Search</td>
+                        <td>Elasticsearch</td>
+                        <td>7.10.2</td>
+                        <td>Full-text search</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP Client</td>
+                        <td>Forest</td>
+                        <td>1.5.32</td>
+                        <td>HTTP requests</td>
+                    </tr>
+                    <tr>
+                        <td>Utilities</td>
+                        <td>Hutool</td>
+                        <td>5.8.32</td>
+                        <td>Java utilities</td>
+                    </tr>
+                    <tr>
+                        <td>Caching</td>
+                        <td>Caffeine</td>
+                        <td>3.2.2</td>
+                        <td>In-memory cache</td>
+                    </tr>
+                    <tr>
+                        <td>Code Gen</td>
+                        <td>Lombok</td>
+                        <td>-</td>
+                        <td>Boilerplate reduction</td>
+                    </tr>
+                    <tr>
+                        <td>Mapping</td>
+                        <td>MapStruct</td>
+                        <td>1.5.5</td>
+                        <td>Object mapping</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- supOS-Frontend -->
+            <h3 style="margin-top: 3rem;">⚛️ 3. supOS-Frontend</h3>
+            <div class="highlight-box">
+                <p><strong>Rol:</strong> Modern Web User Interface</p>
+                <p><strong>Git:</strong> <code>https://github.com/aslanbaris/supOS-frontend</code></p>
+                <p><strong>Teknoloji:</strong> React 18 + TypeScript + Vite</p>
+            </div>
+
+            <h4>📂 Proje Yapısı</h4>
+            <div class="grid-2">
+                <div>
+<pre><code>supOS-Frontend/
+├── src/
+│   ├── pages/              # Route pages
+│   ├── components/         # 58+ components
+│   ├── layout/            # Layout wrappers
+│   ├── routers/           # Route definitions
+│   ├── stores/            # Zustand stores
+│   ├── apis/              # API integration
+│   ├── hooks/             # Custom hooks
+│   ├── utils/             # Utilities
+│   ├── locale/            # i18n files
+│   ├── theme/             # Theme config
+│   └── main.tsx           # Entry point
+│
+├── vite.config.ts         # Vite config
+├── tsconfig.json          # TypeScript config
+├── package.json           # Dependencies
+├── Dockerfile             # Multi-stage build
+└── .env                   # Environment vars</code></pre>
+                </div>
+
+                <div>
+                    <h4>🎯 Ana Sayfalar</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><code>/home</code> - Dashboard</li>
+                        <li><code>/uns</code> - UNS Management</li>
+                        <li><code>/collection-flow</code> - Source Flow</li>
+                        <li><code>/EventFlow</code> - Event Flow</li>
+                        <li><code>/dashboards</code> - Dashboards</li>
+                        <li><code>/account-management</code> - Users</li>
+                        <li><code>/plugin-management</code> - Plugins</li>
+                        <li><code>/Localization</code> - i18n Settings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>🎨 Frontend Teknoloji Stack'i</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Teknoloji</th>
+                        <th>Versiyon</th>
+                        <th>Amaç</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UI Framework</td>
+                        <td>React</td>
+                        <td>18.3.1</td>
+                        <td>Component-based UI</td>
+                    </tr>
+                    <tr>
+                        <td>Language</td>
+                        <td>TypeScript</td>
+                        <td>5.6.3</td>
+                        <td>Type safety</td>
+                    </tr>
+                    <tr>
+                        <td>Build Tool</td>
+                        <td>Vite</td>
+                        <td>6.3.5</td>
+                        <td>Fast builds</td>
+                    </tr>
+                    <tr>
+                        <td>UI Library</td>
+                        <td>Ant Design</td>
+                        <td>5.27.1</td>
+                        <td>Enterprise UI components</td>
+                    </tr>
+                    <tr>
+                        <td>State Management</td>
+                        <td>Zustand</td>
+                        <td>5.0.5</td>
+                        <td>Lightweight state</td>
+                    </tr>
+                    <tr>
+                        <td>Routing</td>
+                        <td>React Router</td>
+                        <td>6.27.0</td>
+                        <td>Client-side routing</td>
+                    </tr>
+                    <tr>
+                        <td>HTTP Client</td>
+                        <td>Axios</td>
+                        <td>1.8.2</td>
+                        <td>API requests</td>
+                    </tr>
+                    <tr>
+                        <td>Visualization</td>
+                        <td>AntV X6</td>
+                        <td>2.18.1</td>
+                        <td>Graph diagrams</td>
+                    </tr>
+                    <tr>
+                        <td>Code Editor</td>
+                        <td>CodeMirror</td>
+                        <td>5.65.18</td>
+                        <td>Code editing</td>
+                    </tr>
+                    <tr>
+                        <td>Drag & Drop</td>
+                        <td>dnd-kit</td>
+                        <td>6.1.0</td>
+                        <td>Drag-drop interactions</td>
+                    </tr>
+                    <tr>
+                        <td>i18n</td>
+                        <td>react-intl</td>
+                        <td>7.0.4</td>
+                        <td>Internationalization</td>
+                    </tr>
+                    <tr>
+                        <td>Module Federation</td>
+                        <td>@module-federation</td>
+                        <td>0.14.3</td>
+                        <td>Micro-frontends</td>
+                    </tr>
+                    <tr>
+                        <td>Styling</td>
+                        <td>Sass</td>
+                        <td>1.80.4</td>
+                        <td>CSS preprocessing</td>
+                    </tr>
+                    <tr>
+                        <td>AI Copilot</td>
+                        <td>CopilotKit</td>
+                        <td>1.8.13</td>
+                        <td>AI assistant</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>🧩 Component Kategorileri (58+ Component)</h4>
+            <div class="tech-stack-grid">
+                <div class="tech-card">
+                    <h4>📐 Layout</h4>
+                    <ul>
+                        <li>com-layout</li>
+                        <li>TopMenu / SideMenu</li>
+                        <li>Tabs management</li>
+                        <li>Breadcrumbs</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h4>📊 Data Display</h4>
+                    <ul>
+                        <li>pro-table</li>
+                        <li>com-card-list</li>
+                        <li>pro-tree</li>
+                        <li>infinite-scroll-list</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h4>📝 Form & Input</h4>
+                    <ul>
+                        <li>com-input</li>
+                        <li>com-select</li>
+                        <li>com-formula</li>
+                        <li>operation-form</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🎨 Visualization</h4>
+                    <ul>
+                        <li>crafted (code editor)</li>
+                        <li>Mermaid diagrams</li>
+                        <li>server-demo</li>
+                        <li>code-snippet</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔄 Interaction</h4>
+                    <ul>
+                        <li>draggable</li>
+                        <li>dnd-table</li>
+                        <li>com-click-trigger</li>
+                        <li>pro-modal</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h4>🔧 Feature</h4>
+                    <ul>
+                        <li>auth (wrapper)</li>
+                        <li>error-boundary</li>
+                        <li>dynamic-mf-component</li>
+                        <li>copilotkit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VERİ AKIŞI -->
+        <section id="dataflow" class="section">
+            <h2>🔄 Veri Akışı ve İletişim</h2>
+
+            <h3>📡 End-to-End Data Flow</h3>
+            <div class="architecture-diagram">
+                <div style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem; color: var(--primary-color);">
+                    <strong>Cihazdan Kullanıcıya Veri Akışı</strong>
+                </div>
+
+                <div class="flow-container">
+                    <div class="flow-box" style="background: #f0f5ff;">
+                        <strong>🏭 IoT Devices / Systems</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Sensors, PLCs, SCADA<br>OPC UA, Modbus, MQTT</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #f9f0ff;">
+                        <strong>🔄 Source Flow (Node-RED)</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Protocol Translation<br>JSON Payload Creation<br>Port: 1880</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #fff7e6;">
+                        <strong>📮 MQTT Broker (EMQX)</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Unified Namespace<br>Topic Hierarchies<br>Port: 1883</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #f6ffed;">
+                        <strong>⚡ Event Flow (Node-RED)</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Business Rules<br>Orchestration<br>Port: 1889</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #fff1f0;">
+                        <strong>💾 Storage Layer</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>PostgreSQL + TimescaleDB<br>Elasticsearch<br>Ports: 5432, 2345</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #e6fffb;">
+                        <strong>☕ Backend API</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Spring Boot<br>REST APIs<br>Port: 8091</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #f0f5ff;">
+                        <strong>🚪 Kong Gateway</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Auth + Routing<br>Transform<br>Port: 8088</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #e6f7ff;">
+                        <strong>⚛️ React Frontend</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>UI/UX<br>Visualization<br>Port: 3000</small>
+                    </div>
+
+                    <div class="flow-arrow">→</div>
+
+                    <div class="flow-box" style="background: #f9f0ff;">
+                        <strong>👤 End User</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <small>Browser<br>Web Application</small>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🔐 Authentication Flow</h3>
+            <div class="info-box">
+                <h4>OAuth2 / OIDC Authentication with Keycloak</h4>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>1. User Login</h4>
+                        <p>Kullanıcı frontend'de login sayfasını açar</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>2. Redirect to Keycloak</h4>
+                        <p>Frontend kullanıcıyı Keycloak'a yönlendirir (<code>http://keycloak:8081</code>)</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>3. OAuth Authorization</h4>
+                        <p>Keycloak kullanıcı credentials'ını doğrular</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>4. Token Generation</h4>
+                        <p>Keycloak JWT access token ve refresh token üretir</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>5. Redirect to Frontend</h4>
+                        <p>Tokens ile frontend'e geri dönülür</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>6. Token Storage</h4>
+                        <p>Frontend token'ı cookie veya localStorage'da saklar</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>7. API Requests</h4>
+                        <p>Her API request'te <code>X-Sa-Token</code> header'ı eklenir</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>8. Kong Validation</h4>
+                        <p>Kong Gateway custom auth plugin ile token'ı doğrular</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>9. Backend Processing</h4>
+                        <p>Backend Sa-Token ile yetkilendirme yapar</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>10. Response</h4>
+                        <p>Yetkilendirme başarılı ise response döner</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📨 API Request Flow</h3>
+            <div class="architecture-diagram">
+<pre style="background: white; color: #2d2d2d; border: 2px solid var(--border-color);">
+User Action in Browser
+        ↓
+React Component (pages/uns)
+        ↓
+API Call (apis/inter-api/unsApi.ts)
+        ↓
+Axios Wrapper (ApiWrapper class)
+        ↓
+HTTP Request to Kong (http://localhost:8088)
+        ↓
+Kong API Gateway
+├── Auth Checker Plugin (validate X-Sa-Token)
+├── URL Transformer Plugin (route rewriting)
+└── Rate Limiting & Logging
+        ↓
+Backend Service (http://backend:8091)
+        ↓
+Spring Boot Controller (UnsApiController)
+        ↓
+Service Layer (UnsService)
+        ↓
+Repository Layer (MyBatis-Plus)
+        ↓
+Database Query
+├── PostgreSQL (relational data)
+├── TimescaleDB (time-series)
+└── Elasticsearch (search index)
+        ↓
+Response back through layers
+        ↓
+JSON Response to Frontend
+        ↓
+Zustand Store Update (stores/unsStore.ts)
+        ↓
+React Component Re-render
+        ↓
+UI Update</pre>
+            </div>
+
+            <h3>🔄 MQTT Message Flow</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Adım</th>
+                        <th>Komponent</th>
+                        <th>Aksiyon</th>
+                        <th>Data Format</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>IoT Device</td>
+                        <td>Sensor değeri okur</td>
+                        <td>Raw binary / Protocol-specific</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Source Flow</td>
+                        <td>Node-RED flow protokolü parse eder</td>
+                        <td>Modbus → JSON</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Source Flow</td>
+                        <td>MQTT topic'e publish eder</td>
+                        <td><code>factory/line1/sensor/temp</code></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>EMQX Broker</td>
+                        <td>Message'ı topic hierarchy'de route eder</td>
+                        <td>JSON payload</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Event Flow</td>
+                        <td>Topic'e subscribe, business rule uygular</td>
+                        <td>JSON + enriched metadata</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Backend Adapter</td>
+                        <td>MQTT message'ı dinler</td>
+                        <td>Java POJO</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Backend Service</td>
+                        <td>Database'e persist eder</td>
+                        <td>SQL insert to TimescaleDB</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Frontend</td>
+                        <td>API ile time-series data query</td>
+                        <td>HTTP GET → JSON array</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Frontend</td>
+                        <td>Chart component'te visualize eder</td>
+                        <td>AntV X6 chart</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>💡 WebSocket Real-time Communication</h3>
+            <div class="highlight-box">
+                <h4>Real-time Updates (supos-websocket module)</h4>
+                <p>Backend WebSocket server üzerinden frontend'e real-time event'ler gönderir:</p>
+                <ul>
+                    <li>✅ Alarm notifications</li>
+                    <li>✅ Data updates (live sensor values)</li>
+                    <li>✅ System status changes</li>
+                    <li>✅ User activity notifications</li>
+                </ul>
+<pre><code>Frontend: new WebSocket('ws://kong:8088/ws')
+Backend: @ServerEndpoint("/ws")
+Event: Backend sends JSON message
+Frontend: Component updates via WebSocket callback</code></pre>
+            </div>
+        </section>
+
+        <!-- TEKNOLOJİLER -->
+        <section id="tech" class="section">
+            <h2>💻 Teknoloji Stack Karşılaştırması</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Backend</th>
+                        <th>Frontend</th>
+                        <th>Infrastructure (CE)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Language</strong></td>
+                        <td>Java 17</td>
+                        <td>TypeScript 5.6</td>
+                        <td>Shell, YAML</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Framework</strong></td>
+                        <td>Spring Boot 3.1.0</td>
+                        <td>React 18.3.1</td>
+                        <td>Docker Compose</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Build Tool</strong></td>
+                        <td>Maven 3.8+</td>
+                        <td>Vite 6.3.5</td>
+                        <td>Docker Build</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Package Manager</strong></td>
+                        <td>Maven Central</td>
+                        <td>pnpm 8+</td>
+                        <td>Docker Hub</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Runtime</strong></td>
+                        <td>IBM Semeru JDK 17</td>
+                        <td>Node.js 18</td>
+                        <td>Docker Engine 27.3+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database</strong></td>
+                        <td>PostgreSQL + MyBatis-Plus</td>
+                        <td>-</td>
+                        <td>TimescaleDB 2.20.0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>State Management</strong></td>
+                        <td>Spring Context</td>
+                        <td>Zustand 5.0.5</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API</strong></td>
+                        <td>Spring Web (REST)</td>
+                        <td>Axios 1.8.2</td>
+                        <td>Kong 3.9.0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>Sa-Token 1.34.0</td>
+                        <td>Cookie + Token</td>
+                        <td>Keycloak 26.0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UI Components</strong></td>
+                        <td>-</td>
+                        <td>Ant Design 5.27.1</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Testing</strong></td>
+                        <td>JUnit, Spring Test</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Code Quality</strong></td>
+                        <td>Lombok, MapStruct</td>
+                        <td>ESLint, Prettier</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Containerization</strong></td>
+                        <td>Dockerfile (multi-stage)</td>
+                        <td>Dockerfile (multi-stage)</td>
+                        <td>Docker Compose v2.29+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Documentation</strong></td>
+                        <td>SpringDoc, SmartDoc</td>
+                        <td>Component docs</td>
+                        <td>README.md</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🔌 External Services Integration</h3>
+            <div class="service-grid">
+                <div class="service-item">
+                    <strong>🗄️ PostgreSQL</strong><br>
+                    <span class="badge badge-primary">Database</span><br>
+                    Main relational database<br>
+                    <code>Port 5432</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>⏱️ TimescaleDB</strong><br>
+                    <span class="badge badge-primary">Time-Series</span><br>
+                    Time-series extension<br>
+                    <code>Port 2345</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>📮 EMQX</strong><br>
+                    <span class="badge badge-warning">Message Broker</span><br>
+                    MQTT 5.0 broker<br>
+                    <code>Port 1883</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>🔄 Node-RED</strong><br>
+                    <span class="badge badge-warning">Flow Engine</span><br>
+                    Low-code automation<br>
+                    <code>Ports 1880, 1889</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>🚪 Kong</strong><br>
+                    <span class="badge badge-success">API Gateway</span><br>
+                    Gateway + plugins<br>
+                    <code>Port 8088</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>🔐 Keycloak</strong><br>
+                    <span class="badge badge-danger">Auth</span><br>
+                    OAuth2/OIDC provider<br>
+                    <code>Port 8081</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>🔍 Elasticsearch</strong><br>
+                    <span class="badge badge-primary">Search</span><br>
+                    Full-text search<br>
+                    <code>Port 9200</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>📊 Grafana</strong><br>
+                    <span class="badge badge-warning">Visualization</span><br>
+                    Metrics dashboard<br>
+                    <code>Port 3000</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>📦 MinIO</strong><br>
+                    <span class="badge badge-success">Storage</span><br>
+                    S3-compatible storage<br>
+                    <code>Ports 9000, 9001</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>🐳 Portainer</strong><br>
+                    <span class="badge badge-primary">Management</span><br>
+                    Container UI<br>
+                    <code>Port 9443</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>💬 Chat2DB</strong><br>
+                    <span class="badge badge-warning">DB Tool</span><br>
+                    Database client<br>
+                    <code>Port 10824</code>
+                </div>
+
+                <div class="service-item">
+                    <strong>📊 Kibana</strong><br>
+                    <span class="badge badge-primary">Logs</span><br>
+                    Elasticsearch UI<br>
+                    <code>Port 5601</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEPLOYMENT -->
+        <section id="deployment" class="section">
+            <h2>🚀 Deployment Stratejisi</h2>
+
+            <h3>🎯 Deployment Modelleri</h3>
+            <div class="grid-2">
+                <div class="diagram-box">
+                    <h4>📦 Model 1: All-in-One (Mevcut)</h4>
+                    <p><strong>Avantajlar:</strong></p>
+                    <ul>
+                        <li>✅ Kolay kurulum (tek komut)</li>
+                        <li>✅ Tutarlı versiyon yönetimi</li>
+                        <li>✅ Network complexity düşük</li>
+                        <li>✅ Resource paylaşımı kolay</li>
+                    </ul>
+                    <p><strong>Dezavantajlar:</strong></p>
+                    <ul>
+                        <li>❌ Tek hata tüm sistemi etkiler</li>
+                        <li>❌ Scalability sınırlı</li>
+                        <li>❌ Bağımsız deploy mümkün değil</li>
+                    </ul>
+                </div>
+
+                <div class="diagram-box">
+                    <h4>🌐 Model 2: Distributed (Önerilen)</h4>
+                    <p><strong>Avantajlar:</strong></p>
+                    <ul>
+                        <li>✅ Bağımsız ölçeklenebilirlik</li>
+                        <li>✅ Fault isolation</li>
+                        <li>✅ Farklı sunucularda deploy</li>
+                        <li>✅ Yüksek erişilebilirlik</li>
+                    </ul>
+                    <p><strong>Dezavantajlar:</strong></p>
+                    <ul>
+                        <li>❌ Karmaşık network konfigürasyonu</li>
+                        <li>❌ Service discovery gerekli</li>
+                        <li>❌ Daha fazla monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🏗️ Container Architecture</h3>
+            <div class="container-diagram">
+                <h4 style="text-align: center; margin-bottom: 1.5rem;">Docker Container Layout</h4>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                    <div style="border: 2px solid #1890ff; border-radius: 8px; padding: 1rem; background: #e6f7ff;">
+                        <strong>🎯 Frontend Container</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <p><strong>Base:</strong> node:18-alpine</p>
+                        <p><strong>Build:</strong> pnpm + Vite</p>
+                        <p><strong>Runtime:</strong> serve (static)</p>
+                        <p><strong>Ports:</strong> 3000-3010, 4000</p>
+                        <p><strong>Memory:</strong> ~512MB</p>
+                        <p><strong>Volumes:</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li><code>/mount/frontend/plugins</code></li>
+                        </ul>
+                    </div>
+
+                    <div style="border: 2px solid #52c41a; border-radius: 8px; padding: 1rem; background: #f6ffed;">
+                        <strong>☕ Backend Container</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <p><strong>Base:</strong> ibm-semeru-runtimes:17</p>
+                        <p><strong>Build:</strong> Maven multi-module</p>
+                        <p><strong>Runtime:</strong> java -jar bootstrap.jar</p>
+                        <p><strong>Ports:</strong> 8080, 8091, 19099</p>
+                        <p><strong>Memory:</strong> 512MB-3GB</p>
+                        <p><strong>Volumes:</strong></p>
+                        <ul style="font-size: 0.9rem;">
+                            <li><code>/mount/backend/apps</code></li>
+                            <li><code>/mount/backend/log</code></li>
+                            <li><code>/mount/backend/uns</code></li>
+                        </ul>
+                    </div>
+
+                    <div style="border: 2px solid #fa8c16; border-radius: 8px; padding: 1rem; background: #fff7e6;">
+                        <strong>🔧 Infrastructure Containers</strong>
+                        <hr style="margin: 0.5rem 0;">
+                        <p><strong>PostgreSQL:</strong> timescale/timescaledb:2.20.0-pg17</p>
+                        <p><strong>EMQX:</strong> emqx/emqx:5.8</p>
+                        <p><strong>Kong:</strong> kong:3.9.0</p>
+                        <p><strong>Keycloak:</strong> keycloak/keycloak:26.0</p>
+                        <p><strong>Node-RED:</strong> nodered/node-red:4.0.8-22</p>
+                        <p><strong>Total:</strong> 15+ containers</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Hardware Requirements</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Profile</th>
+                        <th>CPU</th>
+                        <th>RAM</th>
+                        <th>Disk</th>
+                        <th>IOPS</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Minimum (4c8g)</strong></td>
+                        <td>4 cores</td>
+                        <td>8 GB</td>
+                        <td>100 GB</td>
+                        <td>1000</td>
+                        <td>Development, POC</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recommended (8c16g)</strong></td>
+                        <td>8 cores</td>
+                        <td>16 GB</td>
+                        <td>500 GB</td>
+                        <td>2000</td>
+                        <td>Small production</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Production</strong></td>
+                        <td>16+ cores</td>
+                        <td>32+ GB</td>
+                        <td>1 TB</td>
+                        <td>5000+</td>
+                        <td>Enterprise deployment</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🔧 Environment Variables</h3>
+            <div class="highlight-box">
+                <h4>Kritik Konfigürasyon (.env)</h4>
+<pre><code># Platform
+OS_PLATFORM_TYPE=linux
+OS_RESOURCE_SPEC=1                # 1=4c8g, 2=8c16g
+VOLUMES_PATH=/volumes/supos/data
+
+# Network
+ENTRANCE_PROTOCOL=http
+ENTRANCE_DOMAIN=127.0.0.1
+ENTRANCE_PORT=8088
+
+# Auth
+OS_AUTH_ENABLE=true
+KEYCLOAK_REALMS=supos
+KEYCLOAK_CLIENTID=supos-ce
+
+# Database
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=postgres
+
+# MQTT
+OS_MQTT_TCP_PORT=1883
+OS_MQTT_WEBSOCKET_TSL_PORT=8084
+
+# Language
+LANGUAGE=en-US                    # or zh-CN
+
+# AI (Optional)
+OS_LLM_TYPE=ollama
+OPENAI_API_KEY=sk-xxx
+
+# Elasticsearch (Optional)
+ELASTICSEARCH_VERSION=7.10.2
+ELASTICSEARCH_ENABLE=false</code></pre>
+            </div>
+
+            <h3>📊 Port Mapping Reference</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Internal Port</th>
+                        <th>External Port</th>
+                        <th>Protocol</th>
+                        <th>Access</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kong Gateway</strong></td>
+                        <td>8000</td>
+                        <td>8088</td>
+                        <td>HTTP</td>
+                        <td>Main entrance</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td>3000, 3001, 3002, 3010</td>
+                        <td>-</td>
+                        <td>HTTP</td>
+                        <td>Via Kong</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend</strong></td>
+                        <td>8080, 8091</td>
+                        <td>-</td>
+                        <td>HTTP</td>
+                        <td>Via Kong</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PostgreSQL</strong></td>
+                        <td>5432</td>
+                        <td>5432</td>
+                        <td>TCP</td>
+                        <td>DB clients</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TimescaleDB</strong></td>
+                        <td>5432</td>
+                        <td>2345</td>
+                        <td>TCP</td>
+                        <td>TSDB clients</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EMQX</strong></td>
+                        <td>1883, 8083, 8084, 18083</td>
+                        <td>1883, 8083, 8084, 18083</td>
+                        <td>MQTT/WS</td>
+                        <td>MQTT clients</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Node-RED (Source)</strong></td>
+                        <td>1880</td>
+                        <td>1880</td>
+                        <td>HTTP</td>
+                        <td>Flow editor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Event Flow</strong></td>
+                        <td>1880</td>
+                        <td>1889</td>
+                        <td>HTTP</td>
+                        <td>Event editor</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Keycloak</strong></td>
+                        <td>8080</td>
+                        <td>8081</td>
+                        <td>HTTP</td>
+                        <td>OAuth UI</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grafana</strong></td>
+                        <td>3000</td>
+                        <td>3000</td>
+                        <td>HTTP</td>
+                        <td>Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MinIO</strong></td>
+                        <td>9000, 9001</td>
+                        <td>9000, 9001</td>
+                        <td>HTTP</td>
+                        <td>Object storage</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Portainer</strong></td>
+                        <td>9000, 9443</td>
+                        <td>9443, 8000</td>
+                        <td>HTTPS</td>
+                        <td>Container mgmt</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- BUILD PLANI -->
+        <section id="build" class="section">
+            <h2>🔧 Build ve Containerization Planı</h2>
+
+            <div class="warning-box">
+                <h4>⚠️ Önemli Notlar</h4>
+                <ul>
+                    <li>Backend ve Frontend'i ayrı ayrı derleyip container image'ları oluşturacağız</li>
+                    <li>supOS-CE repo'su bu image'ları docker-compose ile orchestrate edecek</li>
+                    <li>Her repo kendi Dockerfile'ına sahip (multi-stage build)</li>
+                    <li>Image'lar local Docker registry'de saklanacak</li>
+                </ul>
+            </div>
+
+            <h3>📋 Build Pipeline</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Phase 1: Backend Build</h4>
+                    <p><strong>Lokasyon:</strong> <code>/home/user/supOS-backend</code></p>
+                    <p><strong>Steps:</strong></p>
+                    <ul>
+                        <li>Maven clean install (tüm modüller)</li>
+                        <li>Unit test execution</li>
+                        <li>JAR packaging (bootstrap.jar)</li>
+                        <li>Docker image build</li>
+                    </ul>
+<pre><code>cd /home/user/supOS-backend
+mvn clean install -DskipTests
+docker build -t supos-backend:local -f Dockerfile .</code></pre>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 2: Frontend Build</h4>
+                    <p><strong>Lokasyon:</strong> <code>/home/user/supOS-frontend</code></p>
+                    <p><strong>Steps:</strong></p>
+                    <ul>
+                        <li>pnpm install (dependencies)</li>
+                        <li>TypeScript compilation</li>
+                        <li>Vite build (production)</li>
+                        <li>Docker image build</li>
+                    </ul>
+<pre><code>cd /home/user/supOS-frontend
+pnpm install
+pnpm build
+docker build -t supos-frontend:local -f Dockerfile .</code></pre>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 3: Docker Compose Update</h4>
+                    <p><strong>Lokasyon:</strong> <code>/home/user/supOS-CE</code></p>
+                    <p><strong>Steps:</strong></p>
+                    <ul>
+                        <li>docker-compose.yml güncelle (local image'lar)</li>
+                        <li>.env dosyasını yapılandır</li>
+                        <li>Mount volumes oluştur</li>
+                    </ul>
+<pre><code>cd /home/user/supOS-CE
+# docker-compose.yml içinde:
+# frontend: supos-frontend:local
+# backend: supos-backend:local</code></pre>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 4: Infrastructure Setup</h4>
+                    <p><strong>Steps:</strong></p>
+                    <ul>
+                        <li>PostgreSQL ve diğer servisleri başlat</li>
+                        <li>Keycloak realm konfigürasyonu</li>
+                        <li>Kong plugin setup</li>
+                        <li>Node-RED flow initialization</li>
+                    </ul>
+<pre><code>cd /home/user/supOS-CE
+bash bin/install.sh</code></pre>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 5: Deployment</h4>
+                    <p><strong>Steps:</strong></p>
+                    <ul>
+                        <li>Docker Compose up (tüm stack)</li>
+                        <li>Health check verification</li>
+                        <li>Log monitoring</li>
+                        <li>Smoke testing</li>
+                    </ul>
+<pre><code>docker-compose -f docker-compose-4c8g.yml up -d
+docker-compose logs -f</code></pre>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Phase 6: Verification</h4>
+                    <p><strong>Checks:</strong></p>
+                    <ul>
+                        <li>Frontend accessible: <code>http://localhost:8088/home</code></li>
+                        <li>Backend API: <code>http://localhost:8088/inter-api/supos/</code></li>
+                        <li>Login via Keycloak works</li>
+                        <li>MQTT connection OK</li>
+                        <li>Database migrations applied</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🐳 Dockerfile Stratejisi</h3>
+            <div class="grid-2">
+                <div>
+                    <h4>Backend Dockerfile</h4>
+<pre><code># Stage 1: Build
+FROM maven:3.8-amazoncorretto-17 AS builder
+WORKDIR /app
+COPY pom.xml .
+COPY */pom.xml ./
+RUN mvn dependency:go-offline
+COPY . .
+RUN mvn clean install -DskipTests
+
+# Stage 2: Runtime
+FROM ibm-semeru-runtimes:open-17-jdk
+WORKDIR /app
+COPY --from=builder /app/bootstrap/target/bootstrap.jar .
+ENV MEM_OPTS="-Xms512m -Xmx3g"
+EXPOSE 8080 19099
+CMD ["java", "-jar", "bootstrap.jar"]</code></pre>
+                </div>
+
+                <div>
+                    <h4>Frontend Dockerfile</h4>
+<pre><code># Stage 1: Build
+FROM node:18-alpine AS builder
+WORKDIR /app
+RUN npm install -g pnpm
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+COPY . .
+RUN pnpm build
+
+# Stage 2: Runtime
+FROM node:18-alpine
+WORKDIR /app
+RUN npm install -g serve concurrently
+COPY --from=builder /app/build ./build
+EXPOSE 3000 4000
+CMD ["serve", "-s", "build", "-l", "3000"]</code></pre>
+                </div>
+            </div>
+
+            <h3>🔄 Continuous Integration (CI) Önerisi</h3>
+            <div class="info-box">
+                <h4>GitHub Actions Workflow</h4>
+<pre><code>name: Build and Push Images
+
+on:
+  push:
+    branches: [main, develop]
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
+      - name: Build Docker image
+        run: docker build -t supos-backend:${{ github.sha }} .
+      - name: Push to registry
+        run: docker push supos-backend:${{ github.sha }}
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - name: Build Docker image
+        run: docker build -t supos-frontend:${{ github.sha }} .
+      - name: Push to registry
+        run: docker push supos-frontend:${{ github.sha }}</code></pre>
+            </div>
+
+            <h3>📦 Image Size Optimization</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Unoptimized</th>
+                        <th>Optimized</th>
+                        <th>Optimization Techniques</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Backend</strong></td>
+                        <td>~800 MB</td>
+                        <td>~400 MB</td>
+                        <td>
+                            • Multi-stage build<br>
+                            • JRE instead of JDK<br>
+                            • Alpine base image<br>
+                            • Remove dev dependencies
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td>~500 MB</td>
+                        <td>~200 MB</td>
+                        <td>
+                            • Multi-stage build<br>
+                            • Static serve (no dev server)<br>
+                            • Alpine base image<br>
+                            • Production build only
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🚀 Deployment Commands Cheat Sheet</h3>
+            <div class="highlight-box">
+<pre><code># === LOCAL BUILD ===
+# Backend
+cd /home/user/supOS-backend
+mvn clean install -DskipTests
+docker build -t supos-backend:local .
+
+# Frontend
+cd /home/user/supOS-frontend
+pnpm install && pnpm build
+docker build -t supos-frontend:local .
+
+# === DOCKER COMPOSE ===
+cd /home/user/supOS-CE
+
+# Start all services (4c8g profile)
+docker-compose -f docker-compose-4c8g.yml up -d
+
+# Start specific service
+docker-compose up -d backend frontend
+
+# View logs
+docker-compose logs -f backend
+docker-compose logs -f frontend
+
+# Stop all
+docker-compose down
+
+# Stop and remove volumes
+docker-compose down -v
+
+# === TROUBLESHOOTING ===
+# Check container status
+docker ps -a
+
+# Inspect container
+docker inspect backend
+
+# Execute command in container
+docker exec -it backend bash
+
+# View resource usage
+docker stats
+
+# Restart service
+docker-compose restart backend
+
+# === CLEANUP ===
+# Remove unused images
+docker image prune -a
+
+# Remove all stopped containers
+docker container prune
+
+# Remove all unused volumes
+docker volume prune</code></pre>
+            </div>
+
+            <h3>✅ Pre-deployment Checklist</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>✓</th>
+                        <th>Task</th>
+                        <th>Verification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>☐</td>
+                        <td>Docker Engine installed (27.3+)</td>
+                        <td><code>docker --version</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Docker Compose installed (2.29+)</td>
+                        <td><code>docker-compose --version</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Sufficient disk space (100GB+)</td>
+                        <td><code>df -h</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Memory available (8GB+)</td>
+                        <td><code>free -h</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>.env file configured</td>
+                        <td>Check ENTRANCE_DOMAIN, ports</td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Ports available (8088, 5432, 1883, etc)</td>
+                        <td><code>netstat -tuln</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Backend image built</td>
+                        <td><code>docker images | grep backend</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Frontend image built</td>
+                        <td><code>docker images | grep frontend</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Volume directories exist</td>
+                        <td><code>ls $VOLUMES_PATH</code></td>
+                    </tr>
+                    <tr>
+                        <td>☐</td>
+                        <td>Firewall rules configured</td>
+                        <td>Allow inbound on 8088</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🎯 Next Steps Plan</h3>
+            <div class="info-box">
+                <h4>Uygulama Sırası</h4>
+                <ol style="line-height: 2;">
+                    <li><strong>Repoları Klonla:</strong> Üç repo'yu klonla (✅ TAMAMLANDI)</li>
+                    <li><strong>Backend Build:</strong> Maven ile backend'i derle ve JAR oluştur</li>
+                    <li><strong>Backend Containerize:</strong> Docker image build et</li>
+                    <li><strong>Frontend Build:</strong> pnpm ile frontend'i build et</li>
+                    <li><strong>Frontend Containerize:</strong> Docker image build et</li>
+                    <li><strong>Compose Güncelle:</strong> docker-compose.yml'de local image'ları kullan</li>
+                    <li><strong>Environment Setup:</strong> .env dosyasını configure et</li>
+                    <li><strong>Infrastructure Deploy:</strong> PostgreSQL, EMQX, Kong vb. başlat</li>
+                    <li><strong>Application Deploy:</strong> Backend ve Frontend'i başlat</li>
+                    <li><strong>Post-deployment:</strong> Init scriptleri çalıştır (Keycloak, Kong, Node-RED)</li>
+                    <li><strong>Verification:</strong> Health check ve smoke test</li>
+                    <li><strong>Documentation:</strong> Deployment log ve troubleshooting guide</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <h3>📄 Dokümantasyon Özeti</h3>
+            <p>Bu dokümantasyon supOS-CE platformunun üç ana repository'sini (supOS-CE, supOS-backend, supOS-frontend) kapsamlı bir şekilde analiz eder.</p>
+            <p style="margin-top: 1rem;">
+                <strong>Versiyon:</strong> 1.1.0.0-M |
+                <strong>Oluşturulma:</strong> 2025-11-06 |
+                <strong>Lisans:</strong> Apache 2.0
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                Generated for containerization and deployment planning
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
