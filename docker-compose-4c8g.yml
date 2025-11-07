@@ -272,14 +272,16 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ${VOLUMES_PATH}/postgresql/conf/postgresql.conf:/etc/postgresql/custom.conf
+      # Commented out custom config - use PostgreSQL defaults
+      # - ${VOLUMES_PATH}/postgresql/conf/postgresql.conf:/etc/postgresql/custom.conf
       - /etc/localtime:/etc/localtime:ro
       - ${VOLUMES_PATH}/postgresql/pgdata:/var/lib/postgresql/data # 持久化数据
       - ${VOLUMES_PATH}/postgresql/init-scripts:/docker-entrypoint-initdb.d  # 加载初始化脚本
-    command:
-      - postgres
-      - -c
-      - config_file=/etc/postgresql/custom.conf
+    # Commented out custom config command - use default PostgreSQL startup
+    # command:
+    #   - postgres
+    #   - -c
+    #   - config_file=/etc/postgresql/custom.conf
     healthcheck:
       test: ["CMD-SHELL", "psql -U postgres -d keycloak -c '\\dt public.initialization_complete' | grep -q 'initialization_complete'"]
       interval: 15s
