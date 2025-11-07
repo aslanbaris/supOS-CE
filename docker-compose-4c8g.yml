@@ -384,6 +384,7 @@ services:
   kong:
     image: kong:3.9.0
     container_name: kong
+    user: root
     environment:
       KONG_WORKER_STATE_UPDATE_FREQUENCY: 30
       KONG_DB_CACHE_TTL: 600
