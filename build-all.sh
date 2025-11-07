@@ -272,6 +272,9 @@ build_frontend() {
     # Build production bundle
     log_info "Building production bundle..."
 
+    # Increase Node.js heap size to 4GB to prevent OOM errors
+    export NODE_OPTIONS="--max-old-space-size=4096"
+
     if pnpm build; then
         log_info "✓ Frontend build successful."
     else
