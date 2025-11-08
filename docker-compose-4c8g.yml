@@ -402,16 +402,15 @@ services:
       KONG_SSL_CERT: /etc/kong/ssl/fullchain.cer
       KONG_SSL_CERT_KEY: /etc/kong/ssl/private.key
       KONG_PROXY_LISTEN: 0.0.0.0:8000, 0.0.0.0:8443 ssl
-      KONG_PLUGINS: bundled
+      KONG_PLUGINS: bundled,supos-auth-checker,supos-url-transformer
       KONG_PG_POOL_SIZE: 2
       KONG_LOG_LEVEL: error
     volumes:
       - ${VOLUMES_PATH}/kong/certificationfile:/etc/kong/ssl:ro
-      # Commented out until config and plugins are available
-      # - ${VOLUMES_PATH}/kong/kong_config.yml:/etc/kong/kong_config.yml
-      # - ${VOLUMES_PATH}/kong/start.sh:/usr/local/bin/start.sh
-      # - ${VOLUMES_PATH}/kong/kong-plugin-auth-checker:/usr/local/share/lua/5.1/kong/plugins/supos-auth-checker
-      # - ${VOLUMES_PATH}/kong/kong-plugin-url-transformer:/usr/local/share/lua/5.1/kong/plugins/supos-url-transformer
+      - ${VOLUMES_PATH}/kong/kong_config.yml:/etc/kong/kong_config.yml
+      - ${VOLUMES_PATH}/kong/start.sh:/usr/local/bin/start.sh
+      - ${VOLUMES_PATH}/kong/kong-plugin-auth-checker:/usr/local/share/lua/5.1/kong/plugins/supos-auth-checker
+      - ${VOLUMES_PATH}/kong/kong-plugin-url-transformer:/usr/local/share/lua/5.1/kong/plugins/supos-url-transformer
     ports:
       - "8088:8000"
       - "8443:8443"
@@ -424,8 +423,7 @@ services:
       - keycloak
       - postgresql
     command: >
-      sh -c "kong migrations bootstrap &&
-             kong start"
+      sh -c "/usr/local/bin/start.sh"
     restart: always  # 确保 Kong 自动重启
     networks:
       - default_network
