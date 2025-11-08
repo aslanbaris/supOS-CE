@@ -658,7 +658,6 @@ routes:
   name: Logs
   response_buffering: true
   tags:
-  - 
   - description:menu.desc.logs
   - sort:7
   - parentName:menu.tag.system
@@ -1215,7 +1214,6 @@ routes:
   name: McpClient
   response_buffering: true
   tags:
-  - 
   - parentName:menu.tag.appspace
   - description:menu.desc.mcpclient
   - sort:3
@@ -2304,7 +2302,6 @@ routes:
   response_buffering: true
   tags:
   - description:menu.desc.dockerMgmt
-  - 
   - sort:6
   - parentName:menu.tag.system
   destinations: ~
