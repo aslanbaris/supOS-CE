@@ -685,7 +685,7 @@ routes:
   id: 0d271f38-f4a5-4008-8bb0-33c706460be3
   name: WebHooks
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 776a9d80-b936-4e00-b892-3861b19dd954
@@ -709,7 +709,7 @@ routes:
   id: 0e566d44-48f2-442e-a7e9-b288926f3e88
   name: TDengineUI
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: a63d9d5e-e6ae-4493-813e-5a7fa92f322b
@@ -733,7 +733,7 @@ routes:
   id: 0f376c28-8c9d-4a4a-8c6b-5258d9d8edef
   name: swagger-config
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 228308d0-521c-45f8-a97d-fbe6966efa3c
@@ -757,7 +757,7 @@ routes:
   id: 10c662d8-8304-439b-85a0-398ae09d09e8
   name: grafana-inter
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 24a5cd06-6728-48ff-a7c8-1847c836bd59
@@ -836,7 +836,7 @@ routes:
   id: 1fe717e7-804d-473b-b12b-7f5f68b5ec48
   name: open-hasura-graphql
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: f145ba5c-e9aa-48a6-8a10-9ee476010f7f
@@ -860,7 +860,7 @@ routes:
   id: 209f6169-707c-49f1-86cc-602bc4674b2e
   name: apm-backend-iner
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 89c6a77c-e3e6-4149-a0e7-6ace7fd0413b
@@ -911,7 +911,7 @@ routes:
   id: 2695543d-3af1-4ca5-b515-82e0fe9b69c7
   name: eventflow-backend
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: f8fd7fd2-d8f6-47d7-9c54-aa51a24a68ad
@@ -935,7 +935,7 @@ routes:
   id: 29027b71-49ce-41d1-96fc-14bcb3a2da00
   name: copilotkit
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -987,7 +987,7 @@ routes:
   id: 3794799e-0c23-4065-a88d-7a08c46fbaf4
   name: backend
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: b096bcf5-2984-4acc-9bd5-a570a7653fcd
@@ -1143,7 +1143,7 @@ routes:
   created_at: 1760594842
   updated_at: 1760594842
   request_buffering: true
-  tags: ~
+  tags: []
 - snis: ~
   service: 4d210886-a694-416d-847d-95fc597f5921
   regex_priority: 0
@@ -1166,7 +1166,7 @@ routes:
   id: 5a0cdda1-0ac2-4255-a4bc-a11a8b4a00d5
   name: backend-service-api
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: df4453f0-063a-4346-a074-3c2f9a388ca7
@@ -1190,7 +1190,7 @@ routes:
   id: 5a9793a9-5085-4830-bba7-a5c053a055a1
   name: nodered-backend
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: fbc56015-44d7-42ba-ac9f-abe725bc2478
@@ -1242,7 +1242,7 @@ routes:
   id: 670008e2-5811-4d9d-b925-5429d16caa8f
   name: backend-files
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1266,7 +1266,7 @@ routes:
   id: 6737cbc9-f115-4018-bd0e-90a2342bb002
   name: CodeManagement
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 29bf0a09-9e84-449e-b660-d0c9bf24cab3
@@ -1290,7 +1290,7 @@ routes:
   id: 6856a277-bcae-43a3-992c-81fc5c605baf
   name: open-hasura-restapi
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 5e8458a8-7323-4a25-9efa-4d56dbf5fa5b
@@ -1314,7 +1314,7 @@ routes:
   id: 6ce6b319-0e38-4bf4-ba1d-4d043a926ba7
   name: gateway
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: f145ba5c-e9aa-48a6-8a10-9ee476010f7f
@@ -1338,7 +1338,7 @@ routes:
   id: 6f2a8d9e-d76f-46b9-b2d4-27286651433d
   name: apm-frontend-inter
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1362,7 +1362,7 @@ routes:
   id: 71307652-070e-4ef1-8b30-704d186f3b75
   name: Alert
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: c53d8d7a-962e-4561-accc-ddf6447336df
@@ -1386,7 +1386,7 @@ routes:
   id: 78e5de54-af01-4eff-bb5d-bfbde4f35835
   name: chat2dbapi
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 2df2f7c3-792a-4a30-b30c-6011e2f3f916
@@ -1487,7 +1487,7 @@ routes:
   id: 84235d0d-bc92-4a86-9413-a66807af7f90
   name: plugin-frontend
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1561,7 +1561,7 @@ routes:
   id: 88be7566-488d-4207-b54e-abcb082e2c5e
   name: AppManagement
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1585,7 +1585,7 @@ routes:
   id: 89f3d3e9-97fc-48e8-baf0-4751b83992cb
   name: ThemeManagement
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 1f8b86e3-6352-47a3-ac19-01537a11bec9
@@ -1637,7 +1637,7 @@ routes:
   id: 9df937e7-2ffb-49f4-b60b-4bb5b551419a
   name: open-backend-api
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1793,7 +1793,7 @@ routes:
   id: b610973a-764e-4cef-910e-0794f334e4bd
   name: keycloak-auth
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1846,7 +1846,7 @@ routes:
   id: ba7b2df9-b0d8-4b6b-844d-43f935f3181f
   name: login
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: a63d9d5e-e6ae-4493-813e-5a7fa92f322b
@@ -1870,7 +1870,7 @@ routes:
   id: c010b641-a378-4d8f-b377-08a5ac8c79d1
   name: swagger-ui
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1894,7 +1894,7 @@ routes:
   id: c2dececa-99f4-45e1-9859-01e88352bd58
   name: frontend
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1918,7 +1918,7 @@ routes:
   id: c810eaa9-dbdd-475a-80f6-6cd9a08948a6
   name: CollectionGatewayManagement
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 8e081976-8223-4494-9b4c-0aa5a441bdd5
@@ -1969,7 +1969,7 @@ routes:
   id: caeab40c-0c09-4465-b54a-2609391a19e8
   name: health
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: b2a70de2-d5db-4755-b8ba-b205d8fbb680
@@ -2049,7 +2049,7 @@ routes:
   id: dbb92267-e886-4ee8-b758-a9f9e9af1998
   name: minio-inter
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 24a5cd06-6728-48ff-a7c8-1847c836bd59
@@ -2097,7 +2097,7 @@ routes:
   id: e3ff5178-c156-47e6-90f4-ec2a45b05953
   name: chat2db-inter
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: 42684a67-ac8f-48d6-ae2b-62e1cd26f9d8
@@ -2145,7 +2145,7 @@ routes:
   id: e92d4fec-518a-400b-9094-1a91e989769b
   name: Connection
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 - snis: ~
   service: d9ac42d8-9d41-41e3-a80f-4b64cc215bcf
@@ -2223,7 +2223,7 @@ routes:
   snis: ~
   hosts: ~
   regex_priority: 0
-  tags: ~
+  tags: []
   protocols:
   - http
   - https
@@ -2358,13 +2358,13 @@ routes:
   id: fd23d489-34ad-4c12-9e72-10e43318866d
   name: OpenData
   response_buffering: true
-  tags: ~
+  tags: []
   destinations: ~
 plugins:
 - created_at: 1733799127
   name: supos-auth-checker
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2405,7 +2405,7 @@ plugins:
 - created_at: 1734330234
   name: key-auth
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2430,7 +2430,7 @@ plugins:
 - created_at: 1734073535
   name: request-transformer
   service: e3e88607-311a-4c23-a9c7-bb879efc463e
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2472,7 +2472,7 @@ plugins:
 - created_at: 1734329742
   name: key-auth
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2497,7 +2497,7 @@ plugins:
 - created_at: 1734073759
   name: response-transformer
   service: e3e88607-311a-4c23-a9c7-bb879efc463e
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2535,7 +2535,7 @@ plugins:
 - created_at: 1734329166
   name: key-auth
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2560,7 +2560,7 @@ plugins:
 - created_at: 1757987272
   name: cors
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2591,7 +2591,7 @@ plugins:
 - created_at: 1731400906
   name: response-transformer
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2627,7 +2627,7 @@ plugins:
 - created_at: 1734014838
   name: supos-url-transformer
   service: ~
-  tags: ~
+  tags: []
   updated_at: 1758346462
   instance_name: ~
   consumer: ~
@@ -2706,7 +2706,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -2788,7 +2788,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -2870,7 +2870,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -2952,7 +2952,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3034,7 +3034,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3116,7 +3116,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3198,7 +3198,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3280,7 +3280,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3362,7 +3362,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3444,7 +3444,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3526,7 +3526,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3608,7 +3608,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3690,7 +3690,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3772,7 +3772,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3854,7 +3854,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -3936,7 +3936,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -4018,7 +4018,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -4100,7 +4100,7 @@ upstreams:
       https_verify_certificate: true
       concurrency: 10
     threshold: 0
-  tags: ~
+  tags: []
   hash_on_header: ~
   slots: 1000
   hash_on_query_arg: ~
@@ -4122,126 +4122,126 @@ targets:
 - created_at: 1730264807.829
   updated_at: 1758346462.943
   upstream: 00f62da1-73b3-4308-8ae5-856268388aa9
-  tags: ~
+  tags: []
   id: 0be879dd-7ba3-42e3-96a8-5be0c8dcadfe
   weight: 100
   target: apm:8080
 - created_at: 1729739629.259
   updated_at: 1758346462.957
   upstream: 2e9455f1-241d-4a1e-840e-fea66dd9aa09
-  tags: ~
+  tags: []
   id: 0c66a055-3e1d-4e77-aedd-6de30939a5a2
   weight: 100
   target: grafana:3000
 - created_at: 1729852918.487
   updated_at: 1758346462.96
   upstream: 47b5a73e-51c6-4ace-b507-40458125c0a6
-  tags: ~
+  tags: []
   id: 29a2c68c-7501-49b1-aef1-56e1be3c2d74
   weight: 100
   target: gitea:3000
 - created_at: 1733536131.451
   updated_at: 1758346462.953
   upstream: fc85cfef-6e90-4592-a022-730f5d84ed99
-  tags: ~
+  tags: []
   id: 2cc80d27-504d-4c1a-afaf-646f6e432fd6
   weight: 100
   target: fuxa:1881
 - created_at: 1731397614.344
   updated_at: 1758346462.954
   upstream: c6844f11-b711-4f5f-a2d4-4516995790c5
-  tags: ~
+  tags: []
   id: 2f312fcf-baa6-4de0-84aa-0779713ae279
   weight: 100
   target: minio:9001
 - created_at: 1729737239.883
   updated_at: 1758346462.966
   upstream: 2a0fa8a9-98a4-4456-9d2c-faba35b54882
-  tags: ~
+  tags: []
   id: 38ae0eeb-fa36-40a1-8c72-aaa43e7b9ceb
   weight: 100
   target: konga:1337
 - created_at: 1729739844.316
   updated_at: 1758346462.965
   upstream: fa9fc31a-7d71-43bd-a453-c21704b71ac6
-  tags: ~
+  tags: []
   id: 3ec4626c-673a-4cc1-86fa-10f3b1bdc537
   weight: 100
   target: emqx:18083
 - created_at: 1729739274.174
   updated_at: 1758346462.958
   upstream: 220c1252-a48b-4e7e-af42-b134f316ed16
-  tags: ~
+  tags: []
   id: 5a923a6d-0661-43ad-a668-e89f4980e5a6
   weight: 100
   target: nodered:1880
 - created_at: 1729739915.095
   updated_at: 1758346462.963
   upstream: 3f51d2ee-7609-4f71-b6ec-8ded27b417a2
-  tags: ~
+  tags: []
   id: 78410225-c503-4d2c-885d-c38a72244aa0
   weight: 100
   target: portainer:9443
 - created_at: 1741754798.218
   updated_at: 1758346462.945
   upstream: 14bdf793-231d-439e-8d67-3e47a3e7da05
-  tags: ~
+  tags: []
   id: 7c5e8a1d-6022-42b6-83b7-b1f39739b9df
   weight: 100
   target: frontend:3001
 - created_at: 1729739753.711
   updated_at: 1758346462.946
   upstream: ab6fb6a2-97b9-45e7-b508-46df2df5203e
-  tags: ~
+  tags: []
   id: 8d09a927-4def-479d-8ed9-0473be2a281a
   weight: 100
   target: hasura:8080
 - created_at: 1729832116.752
   updated_at: 1758346462.947
   upstream: 14ee49e7-f9bf-4234-a48f-7b7df7dda0ea
-  tags: ~
+  tags: []
   id: a4cdac00-4421-4a49-b2ba-b2f720f4998d
   weight: 100
   target: keycloak:8080
 - created_at: 1729739894.022
   updated_at: 1758346462.948
   upstream: 420478e2-bdc8-49ec-ba0e-cc4cfd41afc8
-  tags: ~
+  tags: []
   id: afe138dc-2d5e-4329-80ff-a0154b634f42
   weight: 100
   target: kibana:5601
 - created_at: 1729739606.748
   updated_at: 1758346462.95
   upstream: e6729ab9-c894-4963-bbdc-dfae17c88096
-  tags: ~
+  tags: []
   id: e401fd6b-6a87-41be-a501-6456afeb14d3
   weight: 100
   target: backend:8080
 - created_at: 1731459990.339
   updated_at: 1758346462.955
   upstream: 09fa87e7-1cf1-4fc3-9ad6-6861572a8ef4
-  tags: ~
+  tags: []
   id: e5f0e5f7-8b6a-476b-ac72-2e4a32bab571
   weight: 100
   target: minio:9000
 - created_at: 1729914708.061
   updated_at: 1758346462.962
   upstream: c0645f32-b63d-49ba-a723-5cbef9014c99
-  tags: ~
+  tags: []
   id: ef3e3b44-a490-40e8-afac-2b9e2d202643
   weight: 100
   target: frontend:3000
 - created_at: 1729914781.603
   updated_at: 1758346462.951
   upstream: 747a43cc-42c4-457a-abac-518c2fe537b3
-  tags: ~
+  tags: []
   id: f4e24691-4181-42a6-b32c-6c7e8cd92077
   weight: 100
   target: frontend:4000
 - created_at: 1749280900.4
   updated_at: 1758346462.949
   upstream: 3c840281-aeb3-4969-8ea4-cc12d45423a1
-  tags: ~
+  tags: []
   id: f6a73dfa-96f1-4bd4-969f-a46592a5ac49
   weight: 100
   target: frontend:3002
@@ -4250,29 +4250,29 @@ keyauth_credentials:
   id: 5bfc410b-ec4b-4371-a6dd-6775e38c5dc1
   consumer: 59d1ef15-24a5-4373-b957-e8192c15ff6e
   key: 0b7dc033e36f4a1492ac8562885cac27
-  tags: ~
+  tags: []
   ttl: ~
 - created_at: 1734329245
   id: 6b9443ae-73f0-4db6-af00-4f1e3a415dbb
   consumer: 59d1ef15-24a5-4373-b957-e8192c15ff6e
   key: 4174348a-9222-4e81-b33e-5d72d2fd7f1e
-  tags: ~
+  tags: []
   ttl: ~
 - created_at: 1749280821
   id: 6b979102-3576-4a98-b06e-ea72d25249d0
   consumer: 59d1ef15-24a5-4373-b957-e8192c15ff6e
   key: d763a82bd8154b58bd29d9cd141dcab0
-  tags: ~
+  tags: []
   ttl: ~
 - created_at: 1757578203
   id: 7e12e6c7-e28b-4e5f-876b-3f49341ae403
   consumer: 59d1ef15-24a5-4373-b957-e8192c15ff6e
   key: d3672e250b634a4b8602d88f1ae55a81
-  tags: ~
+  tags: []
   ttl: ~
 - created_at: 1749260555
   id: 90d62a81-2634-45a4-8384-6e155876db84
   consumer: 59d1ef15-24a5-4373-b957-e8192c15ff6e
   key: 33d911ac009240279e01b4a95655a0ad
-  tags: ~
+  tags: []
   ttl: ~
