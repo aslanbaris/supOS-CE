@@ -1,0 +1,2 @@
+emqx,nodered,keycloak,kong,postgresql,chat2db,portainer,tsdb,grafana
+--profile grafana
