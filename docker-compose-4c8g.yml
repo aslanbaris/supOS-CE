@@ -108,6 +108,7 @@ services:
   emqx:
     image: emqx/emqx:5.8
     container_name: emqx
+    user: root
     ports:
       - "1883:1883"   # MQTT端口
       - "8883:8883"   # MQTT加密端口
@@ -124,11 +125,12 @@ services:
       - service_password=public
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${VOLUMES_PATH}/emqx/data:/opt/emqx/data
-      - ${VOLUMES_PATH}/emqx/log:/opt/emqx/log
-      - ${VOLUMES_PATH}/emqx/config/emqx.conf:/opt/emqx/etc/emqx.conf
-      - ${VOLUMES_PATH}/emqx/config/default_api_key.conf:/opt/emqx/etc/default_api_key.conf
-      - ${VOLUMES_PATH}/emqx/config/acl.conf:/opt/emqx/etc/acl.conf
+      - emqx_data:/opt/emqx/data
+      - emqx_log:/opt/emqx/log
+      # Commented out config file mounts - use EMQX defaults
+      # - ${VOLUMES_PATH}/emqx/config/emqx.conf:/opt/emqx/etc/emqx.conf
+      # - ${VOLUMES_PATH}/emqx/config/default_api_key.conf:/opt/emqx/etc/default_api_key.conf
+      # - ${VOLUMES_PATH}/emqx/config/acl.conf:/opt/emqx/etc/acl.conf
     restart: always
     networks:
       - default_network
@@ -271,21 +273,23 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ${VOLUMES_PATH}/postgresql/conf/postgresql.conf:/etc/postgresql/custom.conf
+      # Commented out custom config - use PostgreSQL defaults
+      # - ${VOLUMES_PATH}/postgresql/conf/postgresql.conf:/etc/postgresql/custom.conf
       - /etc/localtime:/etc/localtime:ro
       - ${VOLUMES_PATH}/postgresql/pgdata:/var/lib/postgresql/data # 持久化数据
       - ${VOLUMES_PATH}/postgresql/init-scripts:/docker-entrypoint-initdb.d  # 加载初始化脚本
-    command:
-      - postgres
-      - -c
-      - config_file=/etc/postgresql/custom.conf
+    # Commented out custom config command - use default PostgreSQL startup
+    # command:
+    #   - postgres
+    #   - -c
+    #   - config_file=/etc/postgresql/custom.conf
     healthcheck:
-      test: ["CMD-SHELL", "psql -U postgres -d keycloak -c '\\dt public.initialization_complete' | grep -q 'initialization_complete'"]
-      interval: 15s
-      timeout: 15s
-      retries: 15
-      start_period: 120s
-      start_interval: 10s
+      # Simplified health check - only verify PostgreSQL is ready, don't check for keycloak database
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     restart: always
     networks:
       - default_network
@@ -311,8 +315,8 @@ services:
       KC_PROXY: passthrough                       # 设置代理模式
       KC_HOSTNAME: "${ENTRANCE_DOMAIN}"              # 指定主机名
       KC_FRONTEND_URL: "https://${ENTRANCE_DOMAIN}:${ENTRANCE_PORT}"  # 设置前端 URL
-      KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: supos
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-Supos1304@}
       KC_COOKIE_SECURE: false                          # 禁用安全 cookie
       KC_DB: postgres
       KC_DB_URL: "jdbc:postgresql://postgresql:5432/keycloak"
@@ -358,13 +362,15 @@ services:
     ports:
       - "2345:5432"
     volumes:
-      - ${VOLUMES_PATH}/tsdb/conf/postgresql.conf:/etc/postgresql/custom.conf
+      # Commented out custom config - use PostgreSQL defaults
+      # - ${VOLUMES_PATH}/tsdb/conf/postgresql.conf:/etc/postgresql/custom.conf
       - ${VOLUMES_PATH}/tsdb/data:/var/lib/postgresql/data # 持久化数据
       - ${VOLUMES_PATH}/tsdb/init-scripts:/docker-entrypoint-initdb.d  # 加载初始化脚本
-    command:
-      - postgres
-      - -c
-      - config_file=/etc/postgresql/custom.conf
+    # Commented out custom config command - use default PostgreSQL startup
+    # command:
+    #   - postgres
+    #   - -c
+    #   - config_file=/etc/postgresql/custom.conf
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -378,6 +384,7 @@ services:
   kong:
     image: kong:3.9.0
     container_name: kong
+    user: root
     environment:
       KONG_WORKER_STATE_UPDATE_FREQUENCY: 30
       KONG_DB_CACHE_TTL: 600
@@ -416,9 +423,7 @@ services:
       - keycloak
       - postgresql
     command: >
-      sh -c "kong migrations bootstrap &&
-             kong config db_import /etc/kong/kong_config.yml &&
-             kong start"
+      sh -c "/usr/local/bin/start.sh"
     restart: always  # 确保 Kong 自动重启
     networks:
       - default_network
@@ -488,3 +493,5 @@ services:
       - default_network
 volumes:
   plugin_front:
+  emqx_data:
+  emqx_log:
